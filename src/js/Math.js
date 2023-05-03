@@ -19,16 +19,9 @@ export default class MathCalc {
 
   set attack(value) {
     let calc = value * (1 - (this.distance - 1) / 10);
-    if (this.stoned) {
-      calc -= Math.log2(this.distance) * 5;
-    }
-
-    if (calc > 100) {
-      this._attack = 100;
-    } else if (calc > 0) {
-      this._attack = Math.floor(calc);
-    } else {
-      this._attack = 0;
-    }
-  }
+    if (this.stoned) calc -= Math.log2(this.distance) * 5;
+    this._attack = 0;
+    if (calc > 0) this._attack = Math.floor(calc);
+    if (calc > 100) this._attack = 100;
+}
 }
